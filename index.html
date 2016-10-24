@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Twitch - Subscriptions Viewer</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+        <script src="./js/config.js" charset="utf-8"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="./js/twitch.min.js"></script>
+        <script src="./js/main.js" charset="utf-8"></script>
+        <style>
+            .subscriptions, .error, #template, .emotes {
+                display: none;
+            }
+            
+            .media-left img {
+                width: 64px;
+                height: 64px;
+            }
+            
+            .emotes img {
+                padding: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Template for displaying subscriber information -->
+        <div class="panel panel-primary" id="template">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <div class="media profile">
+                    <div class="media-left">
+                        <img src="" class="media-object" />
+                    </div>
+                    
+                    <div class="media-body">
+                        <h4 class="media-heading"></h4>
+                    </div>
+                </div>
+                
+                <div class="emotes">
+                    <h4>Emotes:</h4>
+                </div>
+                
+                <div class="expires">
+                    <h4>Renews:</h4>
+                    <p></p>
+                </div>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="alert alert-danger error"></div>
+            
+            <div class="page-header">
+                <h1>Twitch Subscriptions Viewer</h1>
+            </div>
+
+            <div class="container-fluid">    
+                <a href="#" class="connect"><img src="./img/twitch_connect.png" alt="Connect with Twitch" /></a>
+
+                <div class="subscriptions">
+                    <p class="text-info">Here are your Twitch subscription details:</p>
+                    
+                    <div class="content"></div>
+                    
+                    <a href="#" class="logout btn btn-danger">Logout</a>
+                </div>
+            </div>
+
+            <nav class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container-fluid">
+                    <p class="navbar-text navbar-left">Made with <i class="fa fa-1x fa-heart"></i> by <a href="https://github.com/Decicus" class="navbar-link">Alex Thomassen</a></p>
+
+                    <p class="navbar-text pull-right">Available on <a href="https://github.com/Decicus/twitch-subscriptions-viewer" class="navbar-link"><i class="fa fa-1x fa-github"></i> GitHub</a></p>
+                </div>
+            </nav>
+        </div>
+    </body>
+</html>
