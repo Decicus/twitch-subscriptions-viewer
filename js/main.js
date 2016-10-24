@@ -62,10 +62,11 @@ var append = function(sub, cd) {
 
     var expires = $('.expires', clone);
     if (purchase.will_renew) {
-        var paid = Date.parse(purchase.paid_on);
-        // TODO: Fix renew dates
+        var d = new Date(purchase.paid_on);
+        var date = [d.getUTCFullYear(), (d.getUTCMonth() + 1), d.getUTCDate()];
+        var time = [d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds()];
         
-        $('p', expires).html();
+        $('p', expires).html(date.join('-') + ' ' + time.join(':') + ' (UTC)');
     } else {
         if (sub.access_end !== null) {
             var end = Date.parse(sub.access_end);
@@ -73,6 +74,8 @@ var append = function(sub, cd) {
             $('p', expires).html(end.toLocaleString());
         }
     }
+    
+    $('.consecutive .months', clone).html(purchase.consecutive_months);
     
     clone.appendTo('.subscriptions .content');
 };
