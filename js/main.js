@@ -40,7 +40,11 @@ var append = function(sub, cd) {
     var purchase = sub.purchase_profile;
     
     clone.attr('id', cd.name);
-    $('.panel-heading', clone).html(channel);
+    $('.panel-heading', clone).html(
+        $('<a/>')
+            .attr('href', 'https://www.twitch.tv/' + cd.name)
+            .html('<i class="fa fa-1x fa-twitch"></i> ' + channel)
+    );
     $('.panel-body .media-left img', clone).attr('src', cd.logo);
     $('.panel-body .media-body .media-heading', clone).html(pro.name);
     
