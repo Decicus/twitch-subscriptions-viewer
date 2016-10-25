@@ -50,11 +50,13 @@ var append = function(sub, cd) {
         var element = $('.panel-body .emotes', clone);
         for (var i = 0; i < emotes.length; i++) {
             var emote = emotes[i];
-            element.append(
-                $('<img/>')
-                    .attr('src', emote.url)
-                    .attr('title', emote.regex)
-            );
+            if (emote.state === "active") {
+                element.append(
+                    $('<img/>')
+                        .attr('src', emote.url)
+                        .attr('title', emote.regex)
+                );
+            }
         }
         
         element.css('display', 'block');
@@ -62,11 +64,12 @@ var append = function(sub, cd) {
 
     var expires = $('.expires', clone);
     if (purchase.will_renew) {
-        var d = new Date(purchase.paid_on);
-        var date = [d.getUTCFullYear(), (d.getUTCMonth() + 1), d.getUTCDate()];
-        var time = [d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds()];
-        
-        $('p', expires).html(date.join('-') + ' ' + time.join(':') + ' (UTC)');
+        var d = new Date(sub.access_end);
+        d.setUTCDate(d.getUTCDate() - 3);
+        var date = d.toUTCString().split(" ");
+        date.shift(); // Removes name of day
+        date.pop(); // Removes timezone
+        $('p', expires).html(date.join(" ") + " (UTC)");
     } else {
         if (sub.access_end !== null) {
             var end = Date.parse(sub.access_end);
@@ -83,6 +86,7 @@ var append = function(sub, cd) {
 $(document).ready(function() {
     var apiUrl = 'https://api.twitch.tv/api/users/{name}/tickets?oauth_token={token}&limit=100&offset=0',
         container = $('.subscriptions'),
+        content = $('.content', container),
         connect = $('.connect'),
         error = $('.error'),
         ticketCache = {};
@@ -137,7 +141,7 @@ $(document).ready(function() {
                                     }
                                 }
                             } else {
-                                $('.subscriptions .content').append('<p class="text-info">You do not have any subscriptions.</p>');
+                                content.append('<p class="text-info">You do not have any subscriptions.</p>');
                             }
                         } else {
                             error.html(error);
