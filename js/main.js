@@ -100,7 +100,7 @@ $(document).ready(function() {
             var token = Twitch.getToken();
             connect.hide();
             
-            Twitch.api({method: '/'}, function(err, data) {
+            Twitch.api({method: ''}, function(err, data) {
                 if (!err) {
                     var username = data.token.user_name;
                     var url = apiUrl.replace('{name}', username).replace('{token}', token);
