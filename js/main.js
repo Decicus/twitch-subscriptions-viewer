@@ -42,7 +42,7 @@ var append = function(sub, cd) {
     clone.attr('id', cd.name);
     $('.panel-heading', clone).html(
         $('<a/>')
-            .attr('href', 'https://www.twitch.tv/' + cd.name)
+            .attr('href', cd.url || 'https://www.twitch.tv/' + cd.name)
             .html('<i class="fa fa-1x fa-twitch"></i> ' + channel)
     );
     $('.panel-body .media-left img', clone).attr('src', cd.logo);
@@ -82,7 +82,9 @@ var append = function(sub, cd) {
         }
     }
     
-    $('.consecutive .months', clone).html(purchase.consecutive_months);
+    if (purchase.consecutive_months) {
+        $('.consecutive .months', clone).html(purchase.consecutive_months);
+    }
     
     clone.appendTo('.subscriptions .content');
 };
@@ -135,12 +137,14 @@ $(document).ready(function() {
                                         // Lets just force some values for "channel data" instead
                                         if (pro.short_name === "turbo") {
                                             append(sub, {
+                                                name: pro.short_name,
                                                 display_name: pro.name,
                                                 logo: './img/Glitch.png',
                                                 url: 'https://www.twitch.tv/turbo'
                                             });
                                         } else if (pro.short_name === "twitch_prime") {
                                             append(sub, {
+                                                name: pro.short_name,
                                                 display_name: pro.name,
                                                 logo: 'https://static-cdn.jtvnw.net/badges/v1/a1dd5073-19c3-4911-8cb4-c464a7bc1510/3',
                                                 url: 'https://twitch.amazon.com/prime'
