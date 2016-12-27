@@ -118,7 +118,7 @@ $(document).ready(function() {
                                     var channel = pro.partner_login;
                                     
                                     // Channel subscription
-                                    if (channel !== null) {
+                                    if (channel && channel.length > 0) {
                                         // The ticket cache is mainly just a ghettofix, because the loop finishes before all the requests do.
                                         // This becomes really fucky, since if I attempt to reference local variables
                                         // it will just go to the latest subscription and reference that instead of the one I was hoping to reference
@@ -145,8 +145,6 @@ $(document).ready(function() {
                                                 logo: 'https://static-cdn.jtvnw.net/badges/v1/a1dd5073-19c3-4911-8cb4-c464a7bc1510/3',
                                                 url: 'https://twitch.amazon.com/prime'
                                             });
-                                        } else {
-                                            // ¯\_(ツ)_/¯
                                         }
                                     }
                                 }
