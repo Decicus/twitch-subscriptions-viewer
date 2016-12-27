@@ -139,6 +139,12 @@ $(document).ready(function() {
                                                 logo: './img/Glitch.png',
                                                 url: 'https://www.twitch.tv/turbo'
                                             });
+                                        } else if (pro.short_name === "twitch_prime") {
+                                            append(sub, {
+                                                display_name: pro.name,
+                                                logo: 'https://static-cdn.jtvnw.net/badges/v1/a1dd5073-19c3-4911-8cb4-c464a7bc1510/3',
+                                                url: 'https://twitch.amazon.com/prime'
+                                            });
                                         } else {
                                             // ¯\_(ツ)_/¯
                                         }
