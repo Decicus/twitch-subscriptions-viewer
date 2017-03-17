@@ -76,7 +76,7 @@ var append = function(sub, cd) {
         $('p', expires).html(date.join(" ") + " (UTC)");
     } else {
         if (sub.access_end !== null) {
-            var end = Date.parse(sub.access_end);
+            var end = new Date(sub.access_end);
             $('h4', expires).html('Expires:');
             $('p', expires).html(end.toLocaleString());
         }
