@@ -114,6 +114,12 @@ $(document).ready(function() {
                             var length = tickets.length;
                             
                             if (length > 0) {
+                                var handleApi = function(err, cd) {
+                                    if (!err) {
+                                        append(ticketCache[cd.name], cd);
+                                    }
+                                };
+
                                 for (var i = 0; i < length; i++) {
                                     var sub = tickets[i];
                                     var pro = sub.product;
@@ -127,11 +133,7 @@ $(document).ready(function() {
                                         // Thus I reference the ticketCache based on the username. This should cover 99.9% of the cases
                                         // but of course Twitch API can be inconsistent and not give the right username, which is hilarious
                                         ticketCache[channel] = sub;
-                                        Twitch.api({method: '/channels/' + sub.product.partner_login}, function(err, cd) {
-                                            if (!err) {
-                                                append(ticketCache[cd.name], cd);
-                                            }
-                                        });
+                                        Twitch.api({method: '/channels/' + sub.product.partner_login}, handleApi);
                                     } else {
                                         // Turbo/other
                                         // Lets just force some values for "channel data" instead
