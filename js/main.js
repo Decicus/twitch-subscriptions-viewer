@@ -45,7 +45,7 @@ var append = function(sub, cd) {
             .attr('href', cd.url || 'https://www.twitch.tv/' + cd.name)
             .html('<i class="fa fa-1x fa-twitch"></i> ' + channel)
     );
-    $('.panel-body .media-left img', clone).attr('src', cd.logo);
+    $('.panel-body .media-left img', clone).attr('src', cd.logo || 'https://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_300x300.png');
     $('.panel-body .media-body .media-heading', clone).html(pro.name);
     
     var emotes = pro.emoticons;
@@ -82,7 +82,10 @@ var append = function(sub, cd) {
         }
     }
     
-    if (purchase.consecutive_months) {
+    var consec = purchase.consecutive_months;
+    if (consec === false || consec === 0) {
+        $('.consecutive', clone).remove();
+    } else {
         $('.consecutive .months', clone).html(purchase.consecutive_months);
     }
     
