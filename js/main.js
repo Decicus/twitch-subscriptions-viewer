@@ -136,7 +136,7 @@ $(document).ready(function() {
                                         // Thus I reference the ticketCache based on the username. This should cover 99.9% of the cases
                                         // but of course Twitch API can be inconsistent and not give the right username, which is hilarious
                                         ticketCache[channel] = sub;
-                                        Twitch.api({method: '/channels/' + sub.product.partner_login}, handleApi);
+                                        Twitch.api({method: 'channels/' + sub.product.partner_login}, handleApi);
                                     } else {
                                         // Turbo/other
                                         // Lets just force some values for "channel data" instead
