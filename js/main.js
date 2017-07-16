@@ -70,10 +70,7 @@ var append = function(sub, cd) {
     if (purchase.will_renew) {
         var d = new Date(sub.access_end);
         d.setUTCDate(d.getUTCDate() - 3);
-        var date = d.toUTCString().split(" ");
-        date.shift(); // Removes name of day
-        date.pop(); // Removes timezone
-        $('p', expires).html(date.join(" ") + " (UTC)");
+        $('p', expires).html(date.toLocaleString());
     } else {
         if (sub.access_end !== null) {
             var end = new Date(sub.access_end);
