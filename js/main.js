@@ -70,7 +70,7 @@ var append = function(sub, cd) {
     if (purchase.will_renew) {
         var d = new Date(sub.access_end);
         d.setUTCDate(d.getUTCDate() - 3);
-        $('p', expires).html(date.toLocaleString());
+        $('p', expires).html(d.toLocaleString());
     } else {
         if (sub.access_end !== null) {
             var end = new Date(sub.access_end);
